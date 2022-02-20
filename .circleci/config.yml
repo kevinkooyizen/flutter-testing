@@ -47,7 +47,6 @@ jobs:
       - attach_workspace:
           at: ./
       - run: flutter test --coverage
-      - run: codecov/upload
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small
@@ -76,6 +75,8 @@ workflows:
       - code-coverage:
           requires:
             - checkout-and-setup
+          post-steps:
+            - codecov/upload
       - flutter-analyze:
           requires:
             - checkout-and-setup
