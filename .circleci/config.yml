@@ -5,6 +5,7 @@ version: 2.1
 orbs:
   flutter: circleci/flutter@1.0.0
   gcp-cli: circleci/gcp-cli@2.2.0
+  codecov: codecov/codecov@3.2.2
 
 executors:
   cirrusci-flutter:
@@ -39,6 +40,14 @@ jobs:
           command: flutter test --machine | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - store_test_results:
           path: test-results
+  code-coverage:
+    executor: cirrusci-flutter
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: flutter test --coverage
+      - run: codecov/upload
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small
@@ -62,6 +71,9 @@ workflows:
                 - /temp\/.*/
                 - /master/
       - flutter-widget-test:
+          requires:
+            - checkout-and-setup
+      - code-coverage:
           requires:
             - checkout-and-setup
       - flutter-analyze:
