@@ -46,6 +46,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
+      - run: sudo apt install gpg-agent
       - run: flutter test --coverage
   flutter-analyze:
     executor: cirrusci-flutter
