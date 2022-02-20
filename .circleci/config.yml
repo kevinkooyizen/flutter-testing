@@ -66,6 +66,7 @@ workflows:
                 - /hotfix\/.*/
                 - /release\/.*/
                 - /temp\/.*/
+                - /master/
       - flutter-widget-test:
           requires:
             - checkout-and-setup
