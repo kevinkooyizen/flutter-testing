@@ -22,12 +22,6 @@ jobs:
     resource_class: small
     steps:
       - checkout
-      - run:
-          name: Setup environment file
-          command: source ./env_setup.sh
-      - run:
-          name: Setup locale file
-          command: ./locale_setup.sh
       - persist_to_workspace:
           root: ./
           paths:
