@@ -33,6 +33,7 @@ comment:
 # Path fixing for when coverage report doesn't match CI build path
 # https://docs.codecov.com/docs/fixing-paths
 fixes:
+  - "/home/circleci/::"
   - "/root/::"
 
 flags:
@@ -40,14 +41,14 @@ flags:
     # only include files in the screens folder
     paths:
       - lib/screens/
-    carryforward: true
+    carryforward: false
   services:
     # only include files in the services folder
     paths:
       - lib/services/
-    carryforward: true
+    carryforward: false
   utilities:
     # only include files in the utilities folder
     paths:
       - lib/utilities/
-    carryforward: true
+    carryforward: false
