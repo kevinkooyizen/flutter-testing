@@ -125,6 +125,9 @@ class _LocationScreenState extends State<LocationScreen> {
               const Text(
                 'This is a small text',
               ),
+              const Text(
+                'This is another small text',
+              ),
             ],
           ),
         ),
