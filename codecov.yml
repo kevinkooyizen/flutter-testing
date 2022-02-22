@@ -18,6 +18,9 @@ coverage:
         flags:
           - utilities
 
+ignore:
+  - "lib/src/**/*.g.dart"
+
 # adding Flags to your `layout` configuration to show up in the PR comment
 comment:
   layout: "reach, diff, flags, files"
@@ -36,10 +39,10 @@ flags:
   services:
     # only include files in the services folder
     paths:
-      - src/services/
+      - lib/services/
     carryforward: false
   utilities:
     # only include files in the utilities folder
     paths:
-      - src/utilities/
+      - lib/utilities/
     carryforward: false
