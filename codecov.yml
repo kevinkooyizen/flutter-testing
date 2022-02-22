@@ -34,15 +34,15 @@ flags:
   screens:
     # only include files in the screens folder
     paths:
-      - screens
+      - screens/
     carryforward: false
   services:
     # only include files in the services folder
     paths:
-      - services
+      - services/
     carryforward: false
   utilities:
     # only include files in the utilities folder
     paths:
-      - utilities
+      - utilities/
     carryforward: false
