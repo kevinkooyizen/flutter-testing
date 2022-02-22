@@ -4,8 +4,7 @@ codecov:
 coverage:
   status:
     project:
-      default:
-        target: 45%
+      default: off
       screens:
         target: 100%
         flags:
