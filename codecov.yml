@@ -30,19 +30,24 @@ comment:
   require_head: yes
   branches: null
 
+# Path fixing for when coverage report doesn't match CI build path
+# https://docs.codecov.com/docs/fixing-paths
+fixes:
+  - "/home/circleci/::"
+
 flags:
   screens:
     # only include files in the screens folder
     paths:
-      - screens/
+      - lib/screens/
     carryforward: false
   services:
     # only include files in the services folder
     paths:
-      - services/
+      - lib/services/
     carryforward: false
   utilities:
     # only include files in the utilities folder
     paths:
-      - utilities/
+      - lib/utilities/
     carryforward: false
