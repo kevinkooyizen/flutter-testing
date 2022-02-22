@@ -7,7 +7,7 @@ coverage:
       default:
         target: 90%
       screens:
-        target: 60%
+        target: 100%
         flags:
           - screens
       services:
