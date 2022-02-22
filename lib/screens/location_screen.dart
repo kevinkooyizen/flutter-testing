@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
@@ -21,6 +19,7 @@ class _LocationScreenState extends State<LocationScreen> {
   late String weatherIcon;
   late String cityName;
   late String weatherMessage;
+  int count = 0;
 
   @override
   void initState() {
@@ -36,8 +35,8 @@ class _LocationScreenState extends State<LocationScreen> {
       temperature = temp.toInt();
 
       /// Set condition
-      int condition = weatherData['weather'][0]['id'];
-      weatherIcon = weather.getWeatherIcon(condition);
+      weather.condition = weatherData['weather'][0]['id'];
+      weatherIcon = weather.weatherIcon;
 
       /// Set weather message
       weatherMessage = weather.getMessage(temperature);
@@ -125,15 +124,17 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
               TextButton(
-                onPressed: () async {
-                  log('small text pressed');
+                onPressed: () {
+                  setState(() {
+                    count++;
+                  });
                 },
-                child: const Text(
-                  'This is a small text',
+                child: Text(
+                  'Click to increase count: $count',
                 ),
               ),
               const Text(
-                'This is another small text',
+                'This is a small text',
               ),
             ],
           ),
