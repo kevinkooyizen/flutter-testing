@@ -4,4 +4,43 @@ codecov:
 coverage:
   status:
     project:
-      default: on
+      default:
+        target: 90%
+      screens:
+        target: 60%
+        flags:
+          - screens
+      services:
+        target: 100%
+        flags:
+          - services
+      utilities:
+        target: 100%
+        flags:
+          - utilities
+
+# adding Flags to your `layout` configuration to show up in the PR comment
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: yes
+  require_head: yes
+  branches: null
+
+flags:
+  screens:
+    # only include files in the screens folder
+    paths:
+      - lib/screens/
+    carryforward: false
+  services:
+    # only include files in the services folder
+    paths:
+      - src/services/
+    carryforward: false
+  utilities:
+    # only include files in the utilities folder
+    paths:
+      - src/utilities/
+    carryforward: false
