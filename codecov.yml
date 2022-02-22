@@ -40,14 +40,14 @@ flags:
     # only include files in the screens folder
     paths:
       - lib/screens/
-    carryforward: false
+    carryforward: true
   services:
     # only include files in the services folder
     paths:
       - lib/services/
-    carryforward: false
+    carryforward: true
   utilities:
     # only include files in the utilities folder
     paths:
       - lib/utilities/
-    carryforward: false
+    carryforward: true
