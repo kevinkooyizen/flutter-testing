@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
@@ -122,8 +124,13 @@ class _LocationScreenState extends State<LocationScreen> {
                   style: kMessageTextStyle,
                 ),
               ),
-              const Text(
-                'This is a small text',
+              TextButton(
+                onPressed: () async {
+                  log('small text pressed');
+                },
+                child: const Text(
+                  'This is a small text',
+                ),
               ),
               const Text(
                 'This is another small text',
