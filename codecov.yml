@@ -4,4 +4,45 @@ codecov:
 coverage:
   status:
     project:
-      default: on
+      default: off
+      screens:
+        target: 100%
+        flags:
+          - screens
+      services:
+        target: 100%
+        flags:
+          - services
+      utilities:
+        target: 100%
+        flags:
+          - utilities
+
+ignore:
+  - "lib/src/**/*.g.dart"
+
+# adding Flags to your `layout` configuration to show up in the PR comment
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: yes
+  branches: null
+
+flags:
+  screens:
+    # only include files in the screens folder
+    paths:
+      - lib/screens
+    carryforward: false
+  services:
+    # only include files in the services folder
+    paths:
+      - lib/services
+    carryforward: false
+  utilities:
+    # only include files in the utilities folder
+    paths:
+      - lib/utilities
+    carryforward: false
