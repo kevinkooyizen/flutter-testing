@@ -7,16 +7,13 @@ coverage:
       default: off
       screens:
         target: 100%
-        flags:
-          - screens
+        paths: lib/screens/
       services:
         target: 100%
-        flags:
-          - services
+        paths: lib/services/
       utilities:
         target: 100%
-        flags:
-          - utilities
+        paths: lib/utilities/
 
 ignore:
   - "lib/src/**/*.g.dart"
