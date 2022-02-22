@@ -33,7 +33,7 @@ comment:
 # Path fixing for when coverage report doesn't match CI build path
 # https://docs.codecov.com/docs/fixing-paths
 fixes:
-  - "/home/circleci/::"
+  - "/root/::"
 
 flags:
   screens:
