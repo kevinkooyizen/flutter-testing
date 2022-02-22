@@ -122,6 +122,9 @@ class _LocationScreenState extends State<LocationScreen> {
                   style: kMessageTextStyle,
                 ),
               ),
+              const Text(
+                'This is a small text',
+              ),
             ],
           ),
         ),
