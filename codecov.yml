@@ -1,0 +1,7 @@
+codecov:
+  bot: "kevinkooyizen"
+
+coverage:
+  status:
+    project:
+      default: on

@@ -5,6 +5,7 @@ version: 2.1
 orbs:
   flutter: circleci/flutter@1.0.0
   gcp-cli: circleci/gcp-cli@2.2.0
+  codecov: codecov/codecov@3.2.2
 
 executors:
   cirrusci-flutter:
@@ -39,6 +40,15 @@ jobs:
           command: flutter test --machine | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - store_test_results:
           path: test-results
+  code-coverage:
+    executor: cirrusci-flutter
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: sudo apt update
+      - run: sudo apt install gpg-agent -y
+      - run: flutter test --coverage
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small
@@ -64,6 +74,11 @@ workflows:
       - flutter-widget-test:
           requires:
             - checkout-and-setup
+      - code-coverage:
+          requires:
+            - checkout-and-setup
+          post-steps:
+            - codecov/upload
       - flutter-analyze:
           requires:
             - checkout-and-setup
