@@ -19,6 +19,7 @@ class _LocationScreenState extends State<LocationScreen> {
   late String weatherIcon;
   late String cityName;
   late String weatherMessage;
+  int count = 0;
 
   @override
   void initState() {
@@ -34,8 +35,8 @@ class _LocationScreenState extends State<LocationScreen> {
       temperature = temp.toInt();
 
       /// Set condition
-      int condition = weatherData['weather'][0]['id'];
-      weatherIcon = weather.getWeatherIcon(condition);
+      weather.condition = weatherData['weather'][0]['id'];
+      weatherIcon = weather.weatherIcon;
 
       /// Set weather message
       weatherMessage = weather.getMessage(temperature);
@@ -120,6 +121,16 @@ class _LocationScreenState extends State<LocationScreen> {
                   '$weatherMessage in $cityName',
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: Text(
+                  'Click to increase count: $count',
                 ),
               ),
               const Text(

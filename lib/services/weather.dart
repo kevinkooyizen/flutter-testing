@@ -5,6 +5,9 @@ const apiKey = 'b1c398b302e0589ebe6ba4a862070a2b';
 const openWeatherMapURL = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
+  WeatherModel();
+  int? condition;
+
   Future<Map?> getCityWeather(String cityName) async {
     NetworkHelper networkHelper = NetworkHelper(
         '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric');
@@ -24,20 +27,20 @@ class WeatherModel {
     return weatherData;
   }
 
-  String getWeatherIcon(int condition) {
-    if (condition < 300) {
+  String get weatherIcon {
+    if (condition! < 300) {
       return '🌩';
-    } else if (condition < 400) {
+    } else if (condition! < 400) {
       return '🌧';
-    } else if (condition < 600) {
+    } else if (condition! < 600) {
       return '☔️';
-    } else if (condition < 700) {
+    } else if (condition! < 700) {
       return '☃️';
-    } else if (condition < 800) {
+    } else if (condition! < 800) {
       return '🌫';
     } else if (condition == 800) {
       return '☀️';
-    } else if (condition <= 804) {
+    } else if (condition! <= 804) {
       return '☁️';
     } else {
       return '🤷‍';
