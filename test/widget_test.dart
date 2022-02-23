@@ -120,9 +120,11 @@ void main() {
   //       find.text('Bring a 🧥 just in case in Kuala Lumpur'), findsOneWidget);
   // });
 
-  // await tester
-  //     .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
-  // await tester.pump();
-  // expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
-  //     findsOneWidget);
+  testWidgets('testing on pressed', (WidgetTester tester) async {
+    await tester
+        .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
+    await tester.pump();
+    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
+        findsOneWidget);
+  });
 }
