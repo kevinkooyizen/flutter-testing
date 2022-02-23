@@ -63,6 +63,12 @@ void main() {
     // expect(find.text('26°'), findsOneWidget);
     expect(find.text('☁️'), findsOneWidget);
     expect(find.text('Time for shorts and 👕 in Kuala Lumpur'), findsOneWidget);
+
+    await tester
+        .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
+    await tester.pump();
+    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
+        findsOneWidget);
     // expect(find.text("It's 🍦 time in Kuala Lumpur"), findsOneWidget);
   });
 
@@ -119,12 +125,4 @@ void main() {
   //   expect(
   //       find.text('Bring a 🧥 just in case in Kuala Lumpur'), findsOneWidget);
   // });
-
-  testWidgets('testing on pressed', (WidgetTester tester) async {
-    await tester
-        .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
-    await tester.pump();
-    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
-        findsOneWidget);
-  });
 }
