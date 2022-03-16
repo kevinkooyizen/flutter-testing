@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/screens/green_screen.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
 
@@ -21,6 +20,7 @@ class _LocationScreenState extends State<LocationScreen> {
   late String cityName;
   late String weatherMessage;
   int count = 0;
+  String changingText = 'I will change';
 
   @override
   void initState() {
@@ -159,6 +159,22 @@ class _LocationScreenState extends State<LocationScreen> {
                   style: kButtonTextStyle,
                 ),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const YellowScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Click me to go to Yellow Screen',
+                  style: kButtonTextStyle,
+                ),
+              )
             ],
           ),
         ),
