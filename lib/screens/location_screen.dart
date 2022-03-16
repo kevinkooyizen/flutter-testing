@@ -30,8 +30,16 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateUI(Map? weatherData) {
     setState(() {
+      if (weatherData == null) {
+        temperature = 0;
+        weatherIcon = 'Error';
+        weatherMessage = 'Unable to get weather data';
+        cityName = '';
+        return;
+      }
+
       /// Set temperature
-      double temp = weatherData!['main']['temp'];
+      double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
 
       /// Set condition
@@ -143,11 +151,3 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 }
-
-// if (weatherData == null) {
-// temperature = 0;
-// weatherIcon = 'Error';
-// weatherMessage = 'Unable to get weather data';
-// cityName = '';
-// return;
-// }
