@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_testing/screens/green_screen.dart';
 import 'package:flutter_testing/screens/yellow_screen.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
@@ -31,8 +32,16 @@ class _LocationScreenState extends State<LocationScreen> {
 
   void updateUI(Map? weatherData) {
     setState(() {
+      if (weatherData == null) {
+        temperature = 0;
+        weatherIcon = 'Error';
+        weatherMessage = 'Unable to get weather data';
+        cityName = '';
+        return;
+      }
+
       /// Set temperature
-      double temp = weatherData!['main']['temp'];
+      double temp = weatherData['main']['temp'];
       temperature = temp.toInt();
 
       /// Set condition
@@ -132,10 +141,24 @@ class _LocationScreenState extends State<LocationScreen> {
                 },
                 child: Text(
                   'Click to increase count: $count',
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
-              const Text(
-                'This is a small text',
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const GreenScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Go to Green Screen',
+                  style: kButtonTextStyle,
+                ),
               ),
               TextButton(
                 onPressed: () {
@@ -160,11 +183,3 @@ class _LocationScreenState extends State<LocationScreen> {
     );
   }
 }
-
-// if (weatherData == null) {
-// temperature = 0;
-// weatherIcon = 'Error';
-// weatherMessage = 'Unable to get weather data';
-// cityName = '';
-// return;
-// }

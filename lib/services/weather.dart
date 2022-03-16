@@ -42,9 +42,9 @@ class WeatherModel {
       return '☀️';
     } else if (condition! <= 804) {
       return '☁️';
-    } else {
-      return '🤷‍';
     }
+
+    return '🤷‍';
   }
 
   String getMessage(int temp) {
@@ -54,6 +54,8 @@ class WeatherModel {
       return 'Time for shorts and 👕';
     } else if (temp < 10) {
       return 'You\'ll need 🧣 and 🧤';
+    } else if (temp < 5) {
+      return 'You\'ll need 🧣 and 🧤 for negative 5';
     } else {
       return 'Bring a 🧥 just in case';
     }
