@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_testing/screens/yellow_screen.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
 
@@ -136,6 +137,22 @@ class _LocationScreenState extends State<LocationScreen> {
               const Text(
                 'This is a small text',
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const YellowScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Click me to go to Yellow Screen',
+                  style: kButtonTextStyle,
+                ),
+              )
             ],
           ),
         ),
