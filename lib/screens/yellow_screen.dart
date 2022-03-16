@@ -9,6 +9,7 @@ class YellowScreen extends StatefulWidget {
 
 class _YellowScreenState extends State<YellowScreen> {
   late String cityName;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class _YellowScreenState extends State<YellowScreen> {
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pop(context, MyTextClass.title);
                   },
                   child: const Icon(
                     Icons.arrow_back_ios,
@@ -35,10 +36,40 @@ class _YellowScreenState extends State<YellowScreen> {
                 'This is a yellow Screen',
                 style: TextStyle(color: Colors.red),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context, MyTextClass.name);
+                },
+                child: const Text(
+                  'This is brings me back as well',
+                  style: TextStyle(color: Colors.green),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: const Text(
+                  'Increase count',
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class MyTextClass {
+  static String get name {
+    return 'button name';
+  }
+
+  static String get title {
+    return 'button title';
   }
 }
