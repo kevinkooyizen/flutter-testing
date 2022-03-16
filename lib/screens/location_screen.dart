@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_testing/screens/green_screen.dart';
 import 'package:flutter_testing/services/weather.dart';
 import 'package:flutter_testing/utilities/constants.dart';
 
@@ -139,10 +140,24 @@ class _LocationScreenState extends State<LocationScreen> {
                 },
                 child: Text(
                   'Click to increase count: $count',
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
-              const Text(
-                'This is a small text',
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const GreenScreen();
+                      },
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Go to Green Screen',
+                  style: kButtonTextStyle,
+                ),
               ),
             ],
           ),
