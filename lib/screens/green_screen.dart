@@ -33,6 +33,7 @@ class _GreenScreenState extends State<GreenScreen> {
                   ),
                 ),
               ),
+              const Text('This is a green screen'),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
