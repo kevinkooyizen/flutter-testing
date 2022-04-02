@@ -58,6 +58,15 @@ class _CityScreenState extends State<CityScreen> {
                   style: kButtonTextStyle,
                 ),
               ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'Go back',
+                  style: kButtonTextStyle,
+                ),
+              ),
             ],
           ),
         ),
