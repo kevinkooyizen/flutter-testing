@@ -48,14 +48,17 @@ void main() {
     await _buildBaseScreen(tester);
     await _navigateToCityScreen(tester);
 
-    // Tap button to increase count
-    await tester
-        .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
+    // Find the increase count button
+    expect(
+        find.widgetWithText(TextButton, 'Increase count: 0'), findsOneWidget);
 
-    await tester.pump();
+    // Tap button to increase count
+    await tester.tap(find.widgetWithText(TextButton, 'Increase count: 0'));
+
+    await tester.pumpAndSettle();
 
     // Check that the count is increased by 1
-    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
-        findsOneWidget);
+    expect(
+        find.widgetWithText(TextButton, 'Increase count: 1'), findsOneWidget);
   });
 }

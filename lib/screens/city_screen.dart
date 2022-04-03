@@ -75,7 +75,7 @@ class _CityScreenState extends State<CityScreen> {
                   });
                 },
                 child: Text(
-                  'Click to increase count: $count',
+                  'Increase count: $count',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
