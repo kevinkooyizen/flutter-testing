@@ -5,9 +5,11 @@ coverage:
   status:
     project:
       screens:
+        target: 10%
         flags:
           - screens
       services:
+        target: 20%
         flags:
           - services
       utilities:
