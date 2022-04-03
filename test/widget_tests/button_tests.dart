@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_testing/screens/city_screen.dart';
+import 'package:flutter_testing/screens/location_screen.dart';
 
 void main() {
   testWidgets('Go back button test', (WidgetTester tester) async {
@@ -23,6 +24,9 @@ void main() {
 
     // wait for screen to build and animations to complete if any
     await tester.pumpAndSettle();
+
+    // ensure I navigated to the location screen by type of widget that I can find
+    expect(find.byType(LocationScreen), findsOneWidget);
 
     // Verify that the location city icon exists
     expect(find.byIcon(Icons.location_city), findsOneWidget);
