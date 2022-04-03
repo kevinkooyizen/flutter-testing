@@ -7,25 +7,37 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_testing/screens/city_screen.dart';
 import 'package:flutter_testing/screens/location_screen.dart';
 
 void main() {
   testWidgets('Go back button test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MaterialApp(
-      home: CityScreen(),
-    ));
+    _buildBaseScreen(WidgetTester tester) async {
+      await tester.pumpWidget(const MaterialApp(
+        home: LocationScreen(),
+      ));
+    }
 
-    // Find 'Go back' button
-    expect(find.text('Go back'), findsOneWidget);
+    _navigateToCityScreen(WidgetTester tester) async {
+      // Tap button to go to city screen
+      await tester.tap(find.byIcon(Icons.location_city));
 
-    await tester.tap(find.widgetWithText(TextButton, 'Go back'));
+      // Wait for screen to build and animations to complete if any
+      await tester.pumpAndSettle();
+    }
 
-    // wait for screen to build and animations to complete if any
-    await tester.pumpAndSettle();
+    _navigateBackToLocationScreen(WidgetTester tester) async {
+      // Tap button to go back to location screen
+      await tester.tap(find.widgetWithText(TextButton, 'Go back'));
 
-    // ensure I navigated to the location screen by type of widget that I can find
+      // Wait for screen to build and animations to complete if any
+      await tester.pumpAndSettle();
+    }
+
+    await _buildBaseScreen(tester);
+    await _navigateToCityScreen(tester);
+    await _navigateBackToLocationScreen(tester);
+
+    // Ensure I navigated to the location screen by type of widget that I can find
     expect(find.byType(LocationScreen), findsOneWidget);
 
     // Verify that the location city icon exists
