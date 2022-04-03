@@ -78,7 +78,8 @@ workflows:
           requires:
             - checkout-and-setup
           post-steps:
-            - codecov/upload
+            - codecov/upload:
+                flags: screens,services,utilities
       - flutter-analyze:
           requires:
             - checkout-and-setup

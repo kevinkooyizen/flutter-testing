@@ -4,17 +4,15 @@ codecov:
 coverage:
   status:
     project:
-      default: off
       screens:
-        target: 100%
+        target: 10%
         flags:
           - screens
       services:
-        target: 100%
+        target: 20%
         flags:
           - services
       utilities:
-        target: 100%
         flags:
           - utilities
 
@@ -30,25 +28,19 @@ comment:
   require_head: yes
   branches: null
 
-# Path fixing for when coverage report doesn't match CI build path
-# https://docs.codecov.com/docs/fixing-paths
-fixes:
-  - "/home/circleci/::"
-  - "/root/::"
-
 flags:
   screens:
     # only include files in the screens folder
     paths:
-      - lib/screens/
-    carryforward: false
+      - lib/screens
+    carryforward: true
   services:
     # only include files in the services folder
     paths:
-      - lib/services/
-    carryforward: false
+      - lib/services
+    carryforward: true
   utilities:
     # only include files in the utilities folder
     paths:
-      - lib/utilities/
-    carryforward: false
+      - lib/utilities
+    carryforward: true
