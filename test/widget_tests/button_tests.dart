@@ -10,29 +10,29 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_testing/screens/location_screen.dart';
 
 void main() {
+  _buildBaseScreen(WidgetTester tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: LocationScreen(),
+    ));
+  }
+
+  _navigateToCityScreen(WidgetTester tester) async {
+    // Tap button to go to city screen
+    await tester.tap(find.byIcon(Icons.location_city));
+
+    // Wait for screen to build and animations to complete if any
+    await tester.pumpAndSettle();
+  }
+
+  _navigateBackToLocationScreen(WidgetTester tester) async {
+    // Tap button to go back to location screen
+    await tester.tap(find.widgetWithText(TextButton, 'Go back'));
+
+    // Wait for screen to build and animations to complete if any
+    await tester.pumpAndSettle();
+  }
+
   testWidgets('Go back button test', (WidgetTester tester) async {
-    _buildBaseScreen(WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(
-        home: LocationScreen(),
-      ));
-    }
-
-    _navigateToCityScreen(WidgetTester tester) async {
-      // Tap button to go to city screen
-      await tester.tap(find.byIcon(Icons.location_city));
-
-      // Wait for screen to build and animations to complete if any
-      await tester.pumpAndSettle();
-    }
-
-    _navigateBackToLocationScreen(WidgetTester tester) async {
-      // Tap button to go back to location screen
-      await tester.tap(find.widgetWithText(TextButton, 'Go back'));
-
-      // Wait for screen to build and animations to complete if any
-      await tester.pumpAndSettle();
-    }
-
     await _buildBaseScreen(tester);
     await _navigateToCityScreen(tester);
     await _navigateBackToLocationScreen(tester);
@@ -42,5 +42,20 @@ void main() {
 
     // Verify that the location city icon exists
     expect(find.byIcon(Icons.location_city), findsOneWidget);
+  });
+
+  testWidgets('Increase count button test', (WidgetTester tester) async {
+    await _buildBaseScreen(tester);
+    await _navigateToCityScreen(tester);
+
+    // Tap button to increase count
+    await tester
+        .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
+
+    await tester.pump();
+
+    // Check that the count is increased by 1
+    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
+        findsOneWidget);
   });
 }

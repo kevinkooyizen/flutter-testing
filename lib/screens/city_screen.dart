@@ -10,6 +10,7 @@ class CityScreen extends StatefulWidget {
 
 class _CityScreenState extends State<CityScreen> {
   late String cityName;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +66,17 @@ class _CityScreenState extends State<CityScreen> {
                 child: const Text(
                   'Go back',
                   style: kButtonTextStyle,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    count++;
+                  });
+                },
+                child: Text(
+                  'Click to increase count: $count',
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
             ],
