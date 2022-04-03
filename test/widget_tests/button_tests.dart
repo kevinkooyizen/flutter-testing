@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_testing/screens/city_screen.dart';
 
 void main() {
-  testWidgets('Hot City input smoke test', (WidgetTester tester) async {
+  testWidgets('Go back button test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MaterialApp(
       home: CityScreen(),
@@ -20,6 +20,9 @@ void main() {
     expect(find.text('Go back'), findsOneWidget);
 
     await tester.tap(find.widgetWithText(TextButton, 'Go back'));
+
+    // wait for screen to build and animations to complete if any
+    await tester.pumpAndSettle();
 
     // Verify that the location city icon exists
     expect(find.byIcon(Icons.location_city), findsOneWidget);
