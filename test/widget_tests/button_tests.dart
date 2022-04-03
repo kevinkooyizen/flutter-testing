@@ -18,5 +18,10 @@ void main() {
 
     // Find 'Go back' button
     expect(find.text('Go back'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(TextButton, 'Go back'));
+
+    // Verify that the location city icon exists
+    expect(find.byIcon(Icons.location_city), findsOneWidget);
   });
 }
