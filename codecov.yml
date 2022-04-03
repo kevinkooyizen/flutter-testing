@@ -5,15 +5,12 @@ coverage:
   status:
     project:
       screens:
-        target: 10%
         flags:
           - screens
       services:
-        target: 20%
         flags:
           - services
       utilities:
-        target: 30%
         flags:
           - utilities
 
@@ -28,12 +25,6 @@ comment:
   require_base: no
   require_head: yes
   branches: null
-
-# Path fixing for when coverage report doesn't match CI build path
-# https://docs.codecov.com/docs/fixing-paths
-fixes:
-  - "/home/circleci/::"
-  - "/root/::"
 
 flags:
   screens:
