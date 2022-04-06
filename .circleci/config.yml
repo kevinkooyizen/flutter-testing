@@ -55,14 +55,8 @@ jobs:
           flags: screens
           xtra_args: -v -Z
       - codecov/upload:
-          flags: services,utilities
+          flags: services
           xtra_args: -v -Z
-      - codecov/upload:
-          flags: utilities
-          xtra_args: -v -Z
-#      - run: sudo apt update
-#      - run: sudo apt install gpg-agent -y
-#      - run: flutter test --coverage
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small
@@ -72,7 +66,6 @@ jobs:
       - run: flutter analyze
 
 workflows:
-  version: 2.1
   development-workflow:
     jobs:
       - checkout-and-setup:
