@@ -37,7 +37,11 @@ jobs:
       - run: mkdir -p test-results
       - run:
           name: Run unit tests
-          command: flutter test --machine | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
+          command: flutter test --machine --coverage | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
       - store_test_results:
           path: test-results
   code-coverage:
@@ -48,15 +52,12 @@ jobs:
       - attach_workspace:
           at: ./
       - codecov/upload:
-          file: lcov.info
           flags: screens
           xtra_args: -v -Z
       - codecov/upload:
-          file: lcov.info
           flags: services,utilities
           xtra_args: -v -Z
       - codecov/upload:
-          file: lcov.info
           flags: utilities
           xtra_args: -v -Z
 #      - run: sudo apt update
@@ -87,9 +88,9 @@ workflows:
       - flutter-widget-test:
           requires:
             - checkout-and-setup
-      - code-coverage:
-          requires:
-            - checkout-and-setup
       - flutter-analyze:
           requires:
             - checkout-and-setup
+      - code-coverage:
+          requires:
+            - flutter-widget-test
