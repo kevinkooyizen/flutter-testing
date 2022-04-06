@@ -41,7 +41,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - lcov.info
+            - coverage/lcov.info
       - store_test_results:
           path: test-results
   code-coverage:
