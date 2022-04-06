@@ -44,17 +44,17 @@ void main() {
     expect(find.byIcon(Icons.location_city), findsOneWidget);
   });
 
-  // testWidgets('Increase count button test', (WidgetTester tester) async {
-  //   await _buildBaseScreen(tester);
-  //   await _navigateToCityScreen(tester);
-  //
-  //   // Tap button to increase count
-  //   await tester.tap(find.widgetWithText(TextButton, 'Increase count: 0'));
-  //
-  //   await tester.pumpAndSettle();
-  //
-  //   // Check that the count is increased by 1
-  //   expect(
-  //       find.widgetWithText(TextButton, 'Increase count: 1'), findsOneWidget);
-  // });
+  testWidgets('Increase count button test', (WidgetTester tester) async {
+    await _buildBaseScreen(tester);
+    await _navigateToCityScreen(tester);
+
+    // Tap button to increase count
+    await tester.tap(find.widgetWithText(TextButton, 'Increase count: 0'));
+
+    await tester.pumpAndSettle();
+
+    // Check that the count is increased by 1
+    expect(
+        find.widgetWithText(TextButton, 'Increase count: 1'), findsOneWidget);
+  });
 }
