@@ -1,14 +1,6 @@
 codecov:
   bot: "kevinkooyizen"
 
-coverage:
-  status:
-    project:
-      default:
-        flags:
-          - screens
-          - services
-
 ignore:
   - "lib/src/**/*.g.dart"
 
