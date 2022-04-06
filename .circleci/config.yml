@@ -46,9 +46,15 @@ jobs:
     steps:
       - attach_workspace:
           at: ./
-      - run: sudo apt update
-      - run: sudo apt install gpg-agent -y
-      - run: flutter test --coverage
+      - codecov/upload:
+          flags: screens
+      - codecov/upload:
+          flags: services,utilities
+      - codecov/upload:
+          flags: utilities
+#      - run: sudo apt update
+#      - run: sudo apt install gpg-agent -y
+#      - run: flutter test --coverage
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small
@@ -77,9 +83,6 @@ workflows:
       - code-coverage:
           requires:
             - checkout-and-setup
-          post-steps:
-            - codecov/upload:
-                flags: screens,services,utilities
       - flutter-analyze:
           requires:
             - checkout-and-setup
