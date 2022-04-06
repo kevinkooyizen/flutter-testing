@@ -43,16 +43,20 @@ jobs:
   code-coverage:
     docker:
       - image: cimg/base:stable
+    resource_class: small
     steps:
       - attach_workspace:
           at: ./
       - codecov/upload:
+          file: lcov.info
           flags: screens
           xtra_args: -v -Z
       - codecov/upload:
+          file: lcov.info
           flags: services,utilities
           xtra_args: -v -Z
       - codecov/upload:
+          file: lcov.info
           flags: utilities
           xtra_args: -v -Z
 #      - run: sudo apt update
