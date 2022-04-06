@@ -41,17 +41,20 @@ jobs:
       - store_test_results:
           path: test-results
   code-coverage:
-    executor: cirrusci-flutter
-    resource_class: small
+    docker:
+      - image: cimg/base:stable
     steps:
       - attach_workspace:
           at: ./
       - codecov/upload:
           flags: screens
+          xtra_args: -v -Z
       - codecov/upload:
           flags: services,utilities
+          xtra_args: -v -Z
       - codecov/upload:
           flags: utilities
+          xtra_args: -v -Z
 #      - run: sudo apt update
 #      - run: sudo apt install gpg-agent -y
 #      - run: flutter test --coverage
