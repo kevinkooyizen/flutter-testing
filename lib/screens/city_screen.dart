@@ -70,15 +70,6 @@ class _CityScreenState extends State<CityScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Second go back button',
-                  style: kButtonTextStyle,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
                   setState(() {
                     count++;
                   });
