@@ -24,24 +24,24 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: ./
+          root: .
           paths:
-            - ./
+            - .
   flutter-widget-test:
     executor: cirrusci-flutter
     resource_class: small
     steps:
       - attach_workspace:
-          at: ./
+          at: .
       - run: flutter pub global activate junitreport
       - run: mkdir -p test-results
       - run:
           name: Run unit tests
           command: flutter test --machine --coverage | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - persist_to_workspace:
-          root: ./
+          root: .
           paths:
-            - ./
+            - coverage/lcov.info
       - store_test_results:
           path: test-results
   code-coverage:
@@ -50,7 +50,7 @@ jobs:
     resource_class: small
     steps:
       - attach_workspace:
-          at: ./
+          at: .
       - codecov/upload:
           flags: screens
           xtra_args: -v -Z
@@ -62,7 +62,7 @@ jobs:
     resource_class: small
     steps:
       - attach_workspace:
-          at: ./
+          at: .
       - run: flutter analyze
 
 workflows:
