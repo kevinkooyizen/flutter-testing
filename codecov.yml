@@ -14,15 +14,6 @@ coverage:
 ignore:
   - "lib/src/**/*.g.dart"
 
-# adding Flags to your `layout` configuration to show up in the PR comment
-comment:
-  layout: "reach, diff, flags, files"
-  behavior: default
-  require_changes: false
-  require_base: no
-  require_head: yes
-  branches: null
-
 flags:
   screens:
     # only include files in the screens folder
