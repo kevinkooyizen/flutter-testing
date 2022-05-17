@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_testing/screens/changing_text_screen.dart';
 import 'package:flutter_testing/screens/green_screen.dart';
 import 'package:flutter_testing/screens/yellow_screen.dart';
 import 'package:flutter_testing/utilities/constants.dart';
@@ -55,6 +56,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 buttonColour: Colors.green,
+              ),
+
+              // Large Padding
+              const SizedBox(height: kLargePadding),
+
+              // Button to go to changing text screen
+              MyButtonWidget(
+                buttonText: 'Changing Text Screen',
+                buttonAction: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ChangingText();
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),
