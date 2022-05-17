@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Large Padding
+const double kLargePadding = 50.0;
+
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 100.0,
