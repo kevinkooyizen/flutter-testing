@@ -24,5 +24,14 @@ void main() {
 
     // Verify that the 'Green Screen button' exists
     expect(find.text('Green Screen'), findsOneWidget);
+
+    // Tap the 'Yellow Screen' button
+    await tester.tap(find.text('Yellow Screen'));
+
+    // Wait for the screen to change
+    await tester.pumpAndSettle();
+
+    // Expect the yellow screen to be displayed
+    expect(find.text('This is a yellow Screen'), findsOneWidget);
   });
 }
