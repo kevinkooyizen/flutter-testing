@@ -9,7 +9,7 @@ coverage:
           - services
       widgets:
         flags:
-          - services
+          - widgets
 
 ignore:
   - "lib/src/**/*.g.dart"
