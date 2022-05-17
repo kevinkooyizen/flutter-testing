@@ -36,6 +36,9 @@ jobs:
       - run: flutter pub global activate junitreport
       - run: mkdir -p test-results
       - run:
+          name: Import all necessary files for coverage
+          command: sh scripts/import_files_coverage.sh flutter_testing
+      - run:
           name: Run unit tests
           command: flutter test --machine --coverage | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - persist_to_workspace:
