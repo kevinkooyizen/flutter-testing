@@ -50,7 +50,7 @@ jobs:
   flutter-golden-test:
     macos:
       xcode: 13.0.0
-    resource_class: macos.x86.medium.gen2 # new generation resources
+    resource_class: macos
     steps:
       - attach_workspace:
           at: .
