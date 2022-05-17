@@ -33,5 +33,20 @@ void main() {
 
     // Expect the yellow screen to be displayed
     expect(find.text('This is a yellow Screen'), findsOneWidget);
+
+    // Tap the back icon button
+    await tester.tap(find.byIcon(Icons.arrow_back_ios));
+
+    // Wait for the screen to change
+    await tester.pumpAndSettle();
+
+    // Tap the 'Green Screen' button
+    await tester.tap(find.text('Green Screen'));
+
+    // Wait for the screen to change
+    await tester.pumpAndSettle();
+
+    // Expect the green screen to be displayed
+    expect(find.text('This is a green screen'), findsOneWidget);
   });
 }
