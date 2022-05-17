@@ -60,6 +60,9 @@ jobs:
       - codecov/upload:
           flags: services
           xtra_args: -v -Z
+      - codecov/upload:
+          flags: widgets
+          xtra_args: -v -Z
   flutter-analyze:
     executor: cirrusci-flutter
     resource_class: small

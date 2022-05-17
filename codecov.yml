@@ -7,6 +7,9 @@ coverage:
       services:
         flags:
           - services
+      widgets:
+        flags:
+          - services
 
 ignore:
   - "lib/src/**/*.g.dart"
@@ -21,4 +24,9 @@ flags:
     # only include files in the services folder
     paths:
       - lib/services
+    carryforward: true
+  widgets:
+    # only include files in the widgets folder
+    paths:
+      - lib/widgets
     carryforward: true
