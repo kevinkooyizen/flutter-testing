@@ -49,7 +49,7 @@ jobs:
           path: test-results
   flutter-golden-test:
     macos:
-      xcode: 12.5.1
+      xcode: 13.0.0
     resource_class: medium
     steps:
       - attach_workspace:
@@ -129,12 +129,12 @@ workflows:
       - flutter-widget-test:
           requires:
             - checkout-and-setup
-      - flutter-golden-test:
-          requires:
-            - checkout-and-setup
-      - golden-tests-codecov-upload:
-          requires:
-            - flutter-golden-test
+#      - flutter-golden-test:
+#          requires:
+#            - checkout-and-setup
+#      - golden-tests-codecov-upload:
+#          requires:
+#            - flutter-golden-test
       - flutter-analyze:
           requires:
             - checkout-and-setup
