@@ -49,7 +49,7 @@ jobs:
           path: test-results
   flutter-golden-test:
     macos:
-      xcode: 13.0.0
+      xcode: 12.5.1
     resource_class: medium
     steps:
       - attach_workspace:
