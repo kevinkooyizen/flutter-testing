@@ -7,6 +7,9 @@ coverage:
       services:
         flags:
           - services
+      utilities:
+        flags:
+          - utilities
       widgets:
         flags:
           - widgets
@@ -24,6 +27,11 @@ flags:
     # only include files in the services folder
     paths:
       - lib/services
+    carryforward: true
+  utilities:
+    # only include files in the utilities folder
+    paths:
+      - lib/utilities
     carryforward: true
   widgets:
     # only include files in the widgets folder
