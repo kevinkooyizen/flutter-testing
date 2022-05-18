@@ -5,23 +5,27 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_testing/screens/blue_screen.dart';
+
 void main() {
-  // testWidgets('Blue screen test', (WidgetTester tester) async {
-  //   // Build our app and trigger a frame.
-  //   await tester.pumpWidget(const MaterialApp(
-  //     home: BlueScreen(),
-  //   ));
-  //
-  //   // Verify that our counter starts at 0.
-  //   expect(find.text('0'), findsOneWidget);
-  //
-  //   // Tap button to increase counter.
-  //   await tester.tap(find.text('Increase counter'));
-  //
-  //   // Wait for the counter to increase.
-  //   await tester.pumpAndSettle();
-  //
-  //   // Verify that our counter has increased.
-  //   expect(find.text('1'), findsOneWidget);
-  // });
+  testWidgets('Blue screen test', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MaterialApp(
+      home: BlueScreen(),
+    ));
+
+    // Verify that our counter starts at 0.
+    expect(find.text('0'), findsOneWidget);
+
+    // Tap button to increase counter.
+    await tester.tap(find.text('Increase counter'));
+
+    // Wait for the counter to increase.
+    await tester.pumpAndSettle();
+
+    // Verify that our counter has increased.
+    expect(find.text('1'), findsOneWidget);
+  });
 }
