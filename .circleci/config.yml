@@ -36,14 +36,56 @@ jobs:
       - run: flutter pub global activate junitreport
       - run: mkdir -p test-results
       - run:
+          name: Import all necessary files for coverage
+          command: sh scripts/import_files_coverage.sh flutter_testing
+      - run:
           name: Run unit tests
-          command: flutter test --machine --coverage | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
+          command: flutter test -x golden --machine --coverage | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - persist_to_workspace:
           root: .
           paths:
             - coverage/lcov.info
       - store_test_results:
           path: test-results
+  flutter-golden-test:
+    macos:
+      xcode: 13.0.0
+    resource_class: medium
+    steps:
+      - attach_workspace:
+          at: .
+
+      # Install Flutter SDK and run flutter pub get
+      - flutter/install_sdk_and_pub:
+          flutter_version: 2.10.3
+      # Install your iOS cocoapods packages with automated caching and best practices
+      - flutter/install_ios_pod
+      # Install iOS Rubygems with automated caching and best practices
+      - flutter/install_ios_gem
+
+      - run:
+          name: Setup executable for flutter
+          command: echo 'export PATH="$PATH:~/development/flutter/bin"' >> $BASH_ENV
+
+      - run:
+          name: Run golden tests
+          command: flutter test --machine test/golden_tests --coverage
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage/lcov.info
+  golden-tests-codecov-upload:
+    docker:
+      - image: cimg/base:stable
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: .
+      - codecov/upload:
+          flags: screens
+          xtra_args: -v -Z
+
   code-coverage:
     docker:
       - image: cimg/base:stable
@@ -56,6 +98,12 @@ jobs:
           xtra_args: -v -Z
       - codecov/upload:
           flags: services
+          xtra_args: -v -Z
+      - codecov/upload:
+          flags: utilities
+          xtra_args: -v -Z
+      - codecov/upload:
+          flags: widgets
           xtra_args: -v -Z
   flutter-analyze:
     executor: cirrusci-flutter
@@ -81,6 +129,12 @@ workflows:
       - flutter-widget-test:
           requires:
             - checkout-and-setup
+#      - flutter-golden-test:
+#          requires:
+#            - checkout-and-setup
+#      - golden-tests-codecov-upload:
+#          requires:
+#            - flutter-golden-test
       - flutter-analyze:
           requires:
             - checkout-and-setup

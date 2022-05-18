@@ -49,6 +49,9 @@ dev_dependencies:
   http: ^0.13.4
   flutter_spinkit: ^5.1.0
 
+  # Golden testing
+  golden_toolkit: ^0.13.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
