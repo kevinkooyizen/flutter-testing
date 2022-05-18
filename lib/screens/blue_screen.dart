@@ -37,7 +37,7 @@ class _BlueScreenState extends State<BlueScreen> {
               const Text('This is a blue screen'),
 
               // Button to increase counter value
-              RaisedButton(
+              TextButton(
                 onPressed: () {
                   setState(() {
                     _counter++;
