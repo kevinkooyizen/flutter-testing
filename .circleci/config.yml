@@ -61,7 +61,7 @@ jobs:
       # Install your iOS cocoapods packages with automated caching and best practices
       - flutter/install_ios_pod
       # Install iOS Rubygems with automated caching and best practices
-      - flutter/install_ios_gem
+      # - flutter/install_ios_gem
 
       - run:
           name: Setup executable for flutter
@@ -129,12 +129,12 @@ workflows:
       - flutter-widget-test:
           requires:
             - checkout-and-setup
-#      - flutter-golden-test:
-#          requires:
-#            - checkout-and-setup
-#      - golden-tests-codecov-upload:
-#          requires:
-#            - flutter-golden-test
+      - flutter-golden-test:
+          requires:
+            - checkout-and-setup
+      - golden-tests-codecov-upload:
+          requires:
+            - flutter-golden-test
       - flutter-analyze:
           requires:
             - checkout-and-setup
