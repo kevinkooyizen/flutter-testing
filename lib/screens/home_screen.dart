@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_testing/screens/blue_screen.dart';
 import 'package:flutter_testing/screens/changing_text_screen.dart';
 import 'package:flutter_testing/screens/green_screen.dart';
 import 'package:flutter_testing/screens/yellow_screen.dart';
@@ -56,6 +57,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 buttonColour: Colors.green,
+              ),
+
+              // Large Padding
+              const SizedBox(height: kLargePadding),
+
+              // Button to go to blue screen
+              MyButtonWidget(
+                buttonText: 'Blue Screen',
+                buttonAction: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const BlueScreen();
+                      },
+                    ),
+                  );
+                },
+                buttonColour: Colors.blue,
               ),
 
               // Large Padding

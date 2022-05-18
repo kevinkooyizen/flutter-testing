@@ -57,15 +57,45 @@ class _ChangingTextState extends State<ChangingText> {
               // Large Padding
               const SizedBox(height: kLargePadding),
 
+              // Label for unaltererd text
+              const Text(
+                'Unaltered Text',
+                style: kButtonTextStyle,
+              ),
+
               // Random Text unaltered
               Text(
                 _text,
                 style: kButtonTextStyle,
               ),
 
+              // Large Padding
+              const SizedBox(height: kLargePadding),
+
+              // Label for text with upper case
+              const Text(
+                'Upper Case Text',
+                style: kButtonTextStyle,
+              ),
+
               // Random Text with upper case
               Text(
                 StringHelper().toUpperCase(_text),
+                style: kButtonTextStyle,
+              ),
+
+              // Large Padding
+              const SizedBox(height: kLargePadding),
+
+              // Label for text with lower case
+              const Text(
+                'Lower Case Text',
+                style: kButtonTextStyle,
+              ),
+
+              // Random Text with lower case
+              Text(
+                StringHelper().toLowerCase(_text),
                 style: kButtonTextStyle,
               ),
             ],
