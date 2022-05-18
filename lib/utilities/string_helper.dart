@@ -11,4 +11,7 @@ class StringHelper {
 
   // Set all characters in the string to upper case.
   String toUpperCase(String str) => str.toUpperCase();
+
+  // Set all characters in the string to lower case.
+  String toLowerCase(String str) => str.toLowerCase();
 }

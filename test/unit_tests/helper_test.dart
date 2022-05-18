@@ -18,5 +18,15 @@ void main() {
         expect(StringHelper().toUpperCase(testString), 'TEST');
       },
     );
+
+    // Test to test toLowerCase function of string helper
+    test(
+      'Test toLowerCase function of string helper',
+      () {
+        const String testString = 'TEST';
+
+        expect(StringHelper().toLowerCase(testString), 'test');
+      },
+    );
   });
 }
