@@ -111,7 +111,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: flutter analyze
+      - run:
+          name: Run flutter analyze
+          command: flutter analyze
+      - run:
+          name: Run dart code metrics analyze
+          command: flutter pub run dart_code_metrics:metrics analyze lib
 
 workflows:
   development-workflow:
