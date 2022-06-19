@@ -112,7 +112,7 @@ jobs:
       - attach_workspace:
           at: .
       - run: flutter pub global activate junitreport
-      - run: mkdir -p test-results
+      - run: mkdir -p code-quality
       - run: touch code-quality/report.xml
       - run:
           name: Run flutter analyze
