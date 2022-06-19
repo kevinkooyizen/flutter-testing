@@ -111,12 +111,14 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - run: flutter pub global activate junitreport
+      - run: mkdir -p test-results
       - run:
           name: Run flutter analyze
           command: flutter analyze
       - run:
           name: Run dart code metrics analyze
-          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings
+          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=checkstyle test-results/flutter.xml
 
 workflows:
   development-workflow:
