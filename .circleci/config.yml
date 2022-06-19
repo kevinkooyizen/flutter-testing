@@ -119,7 +119,7 @@ jobs:
           command: flutter analyze
       - run:
           name: Run dart code metrics analyze
-          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=checkstyle | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
+          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=json | ~/.pub-cache/bin/tojunit --output test-results/flutter.xml
       - store_test_results:
           path: test-results
 
