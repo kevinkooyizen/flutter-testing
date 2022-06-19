@@ -116,7 +116,7 @@ jobs:
           command: flutter analyze
       - run:
           name: Run dart code metrics analyze
-          command: flutter pub run dart_code_metrics:metrics analyze lib
+          command: flutter pub run dart_code_metrics:metrics analyze lib --set-exit-on-violation-level=warning
 
 workflows:
   development-workflow:
