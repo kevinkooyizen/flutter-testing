@@ -18,13 +18,5 @@ void main() {
         expect(StringHelper().toUpperCase(testString), 'TEST');
       },
     );
-
-    // Dummy failing test
-    test(
-      'This is a failing test',
-      () {
-        expect(1, 2);
-      },
-    );
   });
 }
