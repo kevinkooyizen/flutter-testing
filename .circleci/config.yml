@@ -15,12 +15,14 @@ executors:
       TERM: dumb
       _JAVA_OPTIONS: "-Xmx2048m -XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport"
       GRADLE_OPTS: '-Xmx1024m -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
-
-jobs:
-  checkout-and-setup:
+  small-docker-image:
     docker:
       - image: cimg/base:stable
     resource_class: small
+
+jobs:
+  checkout-and-setup:
+    executor: small-docker-image
     steps:
       - checkout
       - persist_to_workspace:
@@ -76,9 +78,7 @@ jobs:
           paths:
             - coverage/lcov.info
   golden-tests-codecov-upload:
-    docker:
-      - image: cimg/base:stable
-    resource_class: small
+    executor: small-docker-image
     steps:
       - attach_workspace:
           at: .
@@ -87,9 +87,7 @@ jobs:
           xtra_args: -v -Z
 
   code-coverage:
-    docker:
-      - image: cimg/base:stable
-    resource_class: small
+    executor: small-docker-image
     steps:
       - attach_workspace:
           at: .
