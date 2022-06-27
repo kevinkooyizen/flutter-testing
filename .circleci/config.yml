@@ -132,6 +132,11 @@ jobs:
 
 workflows:
   golden-test:
+    when:
+      # Execute only when the tag matches the word "run-golden"
+      matches:
+        pattern: "^run-golden$"
+        value: << pipeline.git.tag >>
     jobs:
       - checkout-and-setup:
           filters:
@@ -139,9 +144,17 @@ workflows:
               only:
                 - run-golden
       - flutter-golden-test:
+          filters:
+            tags:
+              only:
+                - run-golden
           requires:
             - checkout-and-setup
       - golden-tests-codecov-upload:
+          filters:
+            tags:
+              only:
+                - run-golden
           requires:
             - flutter-golden-test
   development-workflow:
