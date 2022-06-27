@@ -137,6 +137,9 @@ workflows:
           requires:
             - checkout-and-setup
       - flutter-golden-test:
+        when:
+          condition:
+            matches: [ ".*run-golden.*", << pipeline.git.comment >> ]
           requires:
             - checkout-and-setup
       - golden-tests-codecov-upload:
