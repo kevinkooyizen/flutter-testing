@@ -53,6 +53,12 @@ jobs:
     macos:
       xcode: 13.0.0
     resource_class: medium
+    when:
+      # Execute only when the tag matches the word "run-golden"
+      condition:
+        matches:
+          pattern: "^run-golden$"
+          value: << pipeline.git.tag >>
     steps:
       - run: git push --delete origin run-golden
       - attach_workspace:
@@ -138,10 +144,6 @@ workflows:
           requires:
             - checkout-and-setup
       - flutter-golden-test:
-          condition:
-            matches:
-              pattern: "^run-golden$"
-              value: << pipeline.git.tag >>
           requires:
             - checkout-and-setup
       - golden-tests-codecov-upload:
