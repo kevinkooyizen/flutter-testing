@@ -7,7 +7,9 @@ class StringHelper {
 
   // Generate a random string of the specified length.
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+        length,
+        (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length)),
+      ));
 
   // Set all characters in the string to upper case.
   String toUpperCase(String str) => str.toUpperCase();
