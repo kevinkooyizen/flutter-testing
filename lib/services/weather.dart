@@ -14,6 +14,7 @@ class WeatherModel {
     );
 
     var weatherData = await networkHelper.getData();
+
     return weatherData;
   }
 
@@ -26,6 +27,7 @@ class WeatherModel {
     );
 
     var weatherData = await networkHelper.getData();
+
     return weatherData;
   }
 
