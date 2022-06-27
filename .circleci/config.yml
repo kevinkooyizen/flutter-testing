@@ -54,41 +54,30 @@ jobs:
       xcode: 13.0.0
     resource_class: medium
     steps:
-      - checkout
+      - run: git push --delete origin run-golden
+      - attach_workspace:
+          at: .
+
+      # Install Flutter SDK and run flutter pub get
+      - flutter/install_sdk_and_pub:
+          flutter_version: 2.10.3
+      # Install your iOS cocoapods packages with automated caching and best practices
+      - flutter/install_ios_pod
+      # Install iOS Rubygems with automated caching and best practices
+      # - flutter/install_ios_gem
+
       - run:
-          name: Get git commit message
-          command: export COMMIT_MESSAGE=$(git log --format=%B -n 1 $CIRCLE_SHA1)
-      - run: echo $COMMIT_MESSAGE
-      - when:
-          # Execute only when the commit message contains the word "run-golden"
-          condition:
-            matches:
-              pattern: ".*run-golden.*"
-              value: $COMMIT_MESSAGE
-          steps:
-            - attach_workspace:
-                at: .
+          name: Setup executable for flutter
+          command: echo 'export PATH="$PATH:~/development/flutter/bin"' >> $BASH_ENV
 
-            # Install Flutter SDK and run flutter pub get
-            - flutter/install_sdk_and_pub:
-                flutter_version: 2.10.3
-            # Install your iOS cocoapods packages with automated caching and best practices
-            - flutter/install_ios_pod
-            # Install iOS Rubygems with automated caching and best practices
-            # - flutter/install_ios_gem
+      - run:
+          name: Run golden tests
+          command: flutter test --machine test/golden_tests --coverage
 
-            - run:
-                name: Setup executable for flutter
-                command: echo 'export PATH="$PATH:~/development/flutter/bin"' >> $BASH_ENV
-
-            - run:
-                name: Run golden tests
-                command: flutter test --machine test/golden_tests --coverage
-
-            - persist_to_workspace:
-                root: .
-                paths:
-                  - coverage/lcov.info
+      - persist_to_workspace:
+          root: .
+          paths:
+            - coverage/lcov.info
   golden-tests-codecov-upload:
     executor: small-docker-image
     steps:
@@ -149,6 +138,12 @@ workflows:
           requires:
             - checkout-and-setup
       - flutter-golden-test:
+          when:
+            # Execute only when the tag matches the word "run-golden"
+            condition:
+              matches:
+                pattern: "^run-golden$"
+                value: << pipeline.git.tag >>
           requires:
             - checkout-and-setup
       - golden-tests-codecov-upload:
