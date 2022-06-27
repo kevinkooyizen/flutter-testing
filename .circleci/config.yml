@@ -54,6 +54,7 @@ jobs:
       xcode: 13.0.0
     resource_class: medium
     steps:
+      - checkout
       - run:
           name: Get git commit message
           command: echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> ~/.bashrc
