@@ -55,7 +55,13 @@ jobs:
     resource_class: medium
     steps:
       - checkout
-      - run: git push --delete origin run-golden
+      - add_ssh_keys:
+            fingerprints:
+              - "41:e3:be:f0:d2:c9:1c:ac:31:f2:f6:67:31:a1:79:08"
+      - run:
+          name: Remove tag from github
+          command: |
+            git push --delete origin run-golden
       - attach_workspace:
           at: .
 
