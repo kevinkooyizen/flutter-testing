@@ -63,7 +63,7 @@ jobs:
           # Execute only when the commit message contains the word "run-golden"
           condition:
             matches:
-              pattern: ".*"
+              pattern: ".*run-golden.*"
               value: $COMMIT_MESSAGE
           steps:
             - attach_workspace:
