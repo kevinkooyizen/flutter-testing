@@ -54,6 +54,7 @@ jobs:
       xcode: 13.0.0
     resource_class: medium
     steps:
+      - run: echo 0
       - when:
           # Execute only when the tag matches the word "run-golden"
           condition:
