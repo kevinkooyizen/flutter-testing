@@ -57,33 +57,35 @@ jobs:
       - run:
           name: Get git commit message
           command: echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\"" >> ~/.bashrc
-      when:
-        condition:
-          matches: [ ".*run-golden.*",$COMMIT_MESSAGE ]
-        steps:
-          - attach_workspace:
-              at: .
+      - when:
+          condition:
+            matches:
+              pattern: ".*run-golden.*"
+              value: $COMMIT_MESSAGE
+          steps:
+            - attach_workspace:
+                at: .
 
-          # Install Flutter SDK and run flutter pub get
-          - flutter/install_sdk_and_pub:
-              flutter_version: 2.10.3
-          # Install your iOS cocoapods packages with automated caching and best practices
-          - flutter/install_ios_pod
-          # Install iOS Rubygems with automated caching and best practices
-          # - flutter/install_ios_gem
+            # Install Flutter SDK and run flutter pub get
+            - flutter/install_sdk_and_pub:
+                flutter_version: 2.10.3
+            # Install your iOS cocoapods packages with automated caching and best practices
+            - flutter/install_ios_pod
+            # Install iOS Rubygems with automated caching and best practices
+            # - flutter/install_ios_gem
 
-          - run:
-              name: Setup executable for flutter
-              command: echo 'export PATH="$PATH:~/development/flutter/bin"' >> $BASH_ENV
+            - run:
+                name: Setup executable for flutter
+                command: echo 'export PATH="$PATH:~/development/flutter/bin"' >> $BASH_ENV
 
-          - run:
-              name: Run golden tests
-              command: flutter test --machine test/golden_tests --coverage
+            - run:
+                name: Run golden tests
+                command: flutter test --machine test/golden_tests --coverage
 
-          - persist_to_workspace:
-              root: .
-              paths:
-                - coverage/lcov.info
+            - persist_to_workspace:
+                root: .
+                paths:
+                  - coverage/lcov.info
   golden-tests-codecov-upload:
     executor: small-docker-image
     steps:
