@@ -131,6 +131,15 @@ jobs:
           path: code-quality
 
 workflows:
+  golden-test:
+    jobs:
+      - checkout-and-setup:
+          tags:
+            only:
+              - run-golden
+      - flutter-golden-test:
+          requires:
+            - checkout-and-setup
   development-workflow:
     jobs:
       - checkout-and-setup:
@@ -143,9 +152,6 @@ workflows:
                 - /release\/.*/
                 - /temp\/.*/
       - flutter-widget-test:
-          requires:
-            - checkout-and-setup
-      - flutter-golden-test:
           requires:
             - checkout-and-setup
       - golden-tests-codecov-upload:
