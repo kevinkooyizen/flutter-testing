@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  # Dart code metrics for code quality maintenance
+  dart_code_metrics: ^4.15.2
+
   flutter_test:
     sdk: flutter
 
