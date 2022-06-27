@@ -36,11 +36,13 @@ class Location {
       if (permission == LocationPermission.deniedForever) {
         // Permissions are denied forever, handle appropriately.
         return Future.error(
-            'Location permissions are permanently denied, we cannot request permissions.');
+          'Location permissions are permanently denied, we cannot request permissions.',
+        );
       }
 
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.low);
+        desiredAccuracy: LocationAccuracy.low,
+      );
 
       latitude = position.latitude;
       longitude = position.longitude;

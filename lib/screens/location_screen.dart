@@ -37,6 +37,7 @@ class _LocationScreenState extends State<LocationScreen> {
         weatherIcon = 'Error';
         weatherMessage = 'Unable to get weather data';
         cityName = '';
+
         return;
       }
 
@@ -65,7 +66,9 @@ class _LocationScreenState extends State<LocationScreen> {
             image: const AssetImage('images/location_background.jpg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.8), BlendMode.dstATop),
+              Colors.white.withOpacity(0.8),
+              BlendMode.dstATop,
+            ),
           ),
         ),
         constraints: const BoxConstraints.expand(),
@@ -159,7 +162,7 @@ class _LocationScreenState extends State<LocationScreen> {
                   'Click me to go to Yellow Screen',
                   style: kButtonTextStyle,
                 ),
-              )
+              ),
             ],
           ),
         ),

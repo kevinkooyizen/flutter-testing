@@ -55,6 +55,8 @@ void main() {
 
     // Check that the count is increased by 1
     expect(
-        find.widgetWithText(TextButton, 'Increase count: 1'), findsOneWidget);
+      find.widgetWithText(TextButton, 'Increase count: 1'),
+      findsOneWidget,
+    );
   });
 }
