@@ -10,9 +10,11 @@ class WeatherModel {
 
   Future<Map?> getCityWeather(String cityName) async {
     NetworkHelper networkHelper = NetworkHelper(
-        '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric');
+      '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric',
+    );
 
     var weatherData = await networkHelper.getData();
+
     return weatherData;
   }
 
@@ -21,9 +23,11 @@ class WeatherModel {
     await location.getCurrentLocation();
 
     NetworkHelper networkHelper = NetworkHelper(
-        '$openWeatherMapURL?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
+      '$openWeatherMapURL?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric',
+    );
 
     var weatherData = await networkHelper.getData();
+
     return weatherData;
   }
 

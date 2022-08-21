@@ -18,8 +18,8 @@ void main() {
           "id": 801,
           "main": "Clouds",
           "description": "few clouds",
-          "icon": "02n"
-        }
+          "icon": "02n",
+        },
       ],
       "base": "stations",
       "main": {
@@ -29,7 +29,7 @@ void main() {
         "temp_min": 24.5,
         "temp_max": 26.83,
         "pressure": 1013,
-        "humidity": 90
+        "humidity": 90,
       },
       "visibility": 10000,
       "wind": {"speed": 0.51, "deg": 0},
@@ -40,12 +40,12 @@ void main() {
         "id": 9446,
         "country": "MY",
         "sunrise": 1645485954,
-        "sunset": 1645529287
+        "sunset": 1645529287,
       },
       "timezone": 28800,
       "id": 1735161,
       "name": "Kuala Lumpur",
-      "cod": 200
+      "cod": 200,
     };
 
     // Build our app and trigger a frame.
@@ -67,8 +67,10 @@ void main() {
     await tester
         .tap(find.widgetWithText(TextButton, 'Click to increase count: 0'));
     await tester.pump();
-    expect(find.widgetWithText(TextButton, 'Click to increase count: 1'),
-        findsOneWidget);
+    expect(
+      find.widgetWithText(TextButton, 'Click to increase count: 1'),
+      findsOneWidget,
+    );
     // expect(find.text("It's 🍦 time in Kuala Lumpur"), findsOneWidget);
   });
 
@@ -80,8 +82,8 @@ void main() {
           "id": 801,
           "main": "Clouds",
           "description": "few clouds",
-          "icon": "02n"
-        }
+          "icon": "02n",
+        },
       ],
       "base": "stations",
       "main": {
@@ -90,7 +92,7 @@ void main() {
         "temp_min": 24.5,
         "temp_max": 26.83,
         "pressure": 1013,
-        "humidity": 90
+        "humidity": 90,
       },
       "visibility": 10000,
       "wind": {"speed": 0.51, "deg": 0},
@@ -101,12 +103,12 @@ void main() {
         "id": 9446,
         "country": "MY",
         "sunrise": 1645485954,
-        "sunset": 1645529287
+        "sunset": 1645529287,
       },
       "timezone": 28800,
       "id": 1735161,
       "name": "Kuala Lumpur",
-      "cod": 200
+      "cod": 200,
     };
 
     // Build our app and trigger a frame.
@@ -123,6 +125,8 @@ void main() {
     expect(find.text('11°'), findsOneWidget);
     expect(find.text('☁️'), findsOneWidget);
     expect(
-        find.text('Bring a 🧥 just in case in Kuala Lumpur'), findsOneWidget);
+      find.text('Bring a 🧥 just in case in Kuala Lumpur'),
+      findsOneWidget,
+    );
   });
 }

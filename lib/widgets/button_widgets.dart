@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_testing/utilities/constants.dart';
 
 class MyButtonWidget extends StatelessWidget {
+  @Deprecated('test deprecated function')
   const MyButtonWidget({
     Key? key,
     required this.buttonText,

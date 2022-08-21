@@ -114,14 +114,40 @@ jobs:
       - run: touch code-quality/report.xml
       - run:
           name: Run flutter analyze
-          command: flutter analyze
+          command: flutter analyze --no-fatal-infos
       - run:
           name: Run dart code metrics analyze
-          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=json | ~/.pub-cache/bin/tojunit --output code-quality/report.xml
+          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --set-exit-on-violation-level=warning
       - store_test_results:
           path: code-quality
 
 workflows:
+  golden-test:
+    when:
+      # Execute only when the tag matches the word "run-golden"
+      matches:
+        pattern: "^run-golden$"
+        value: << pipeline.git.tag >>
+    jobs:
+      - checkout-and-setup:
+          filters:
+            tags:
+              only:
+                - run-golden
+      - flutter-golden-test:
+          filters:
+            tags:
+              only:
+                - run-golden
+          requires:
+            - checkout-and-setup
+      - golden-tests-codecov-upload:
+          filters:
+            tags:
+              only:
+                - run-golden
+          requires:
+            - flutter-golden-test
   development-workflow:
     jobs:
       - checkout-and-setup:
@@ -133,16 +159,9 @@ workflows:
                 - /hotfix\/.*/
                 - /release\/.*/
                 - /temp\/.*/
-                - /master/
       - flutter-widget-test:
           requires:
             - checkout-and-setup
-      - flutter-golden-test:
-          requires:
-            - checkout-and-setup
-      - golden-tests-codecov-upload:
-          requires:
-            - flutter-golden-test
       - flutter-analyze:
           requires:
             - checkout-and-setup
