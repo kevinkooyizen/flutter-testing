@@ -117,7 +117,7 @@ jobs:
           command: flutter analyze --no-fatal-infos
       - run:
           name: Run dart code metrics analyze
-          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=json | ~/.pub-cache/bin/tojunit --output code-quality/report.xml
+          command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --set-exit-on-violation-level=warning
       - store_test_results:
           path: code-quality
 
