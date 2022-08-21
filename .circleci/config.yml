@@ -114,7 +114,7 @@ jobs:
       - run: touch code-quality/report.xml
       - run:
           name: Run flutter analyze
-          command: flutter analyze
+          command: flutter analyze --no-fatal-infos
       - run:
           name: Run dart code metrics analyze
           command: flutter pub run dart_code_metrics:metrics analyze lib --fatal-style --fatal-performance --fatal-warnings --reporter=json | ~/.pub-cache/bin/tojunit --output code-quality/report.xml
